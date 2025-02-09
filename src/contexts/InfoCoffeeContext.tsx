@@ -60,6 +60,8 @@ export function InfoCoffeeProvider({ children }: CoffeeContextProviderProps) {
 
   function createInfoOrderCoffe(data: InfoOrderCoffeType) {
     setInfoOrderCoffe(data);
+
+    setQuantityCoffe([]); //Ao submitar irá limpar a order criada.
   }
 
   function removeOrderCoffee(title: string) {

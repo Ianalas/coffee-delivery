@@ -40,12 +40,33 @@ export const HeaderContainer = styled.div`
       }
     }
 
-    & span:nth-child(2){
+    & > a > span{
+      position: relative;
       background-color: ${props => props.theme["yellow-light"]};
       padding: 8px;
 
       & svg{
         color: ${props => props.theme["yellow-dark"]};
+      }
+
+      & p{
+        top: -10px;
+        left: 26px;
+        position: absolute;
+        background-color: ${props => props.theme["yellow-dark"]};
+        color: ${props => props.theme.white};
+        padding: 2px 8px;
+        border-radius: 50%;
+        max-height: 22px;
+        max-width: 22px;
+
+        display: flex;
+        aling-items: center;
+        text-aling: center;
+
+        // & a{
+        //   color: ${props => props.theme.white};
+        // }
       }
     }
   } 
