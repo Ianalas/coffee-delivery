@@ -1,5 +1,7 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useReducer } from "react";
 import { InfosCoffee } from "../infos/InfosCoffee";
+import { coffeeReducer } from "../reducers/coffe/reducer";
+import { addOrderAction, clearOrderAction, removeOrderAction, setInfoOrderAction } from "../reducers/coffe/actions";
 
 export interface CoffeeProviderType {
   infosCoffee: Record<string, InfosCoffeeType>;
@@ -16,19 +18,18 @@ interface CoffeeContextProviderProps {
   children: ReactNode;
 }
 
-interface InfosCoffeeType {
+export interface InfosCoffeeType {
   title: string;
   description: string;
   tagName: string[];
   price: number;
 }
 
-interface OrderCoffeType {
+export interface OrderCoffeType {
   type: string;
   quantity: number;
 }
-
-interface InfoOrderCoffeType {
+export interface InfoOrderCoffeType {
   cep: string;
   rua: string;
   numero: string;
@@ -40,37 +41,35 @@ interface InfoOrderCoffeType {
 }
 
 export function InfoCoffeeProvider({ children }: CoffeeContextProviderProps) {
-  const [infosCoffee, setInfosCoffee] = useState<Record<string, InfosCoffeeType>>(InfosCoffee);
-  const [quantityCoffe, setQuantityCoffe] = useState<OrderCoffeType[]>([]);
-  const [infoOrderCoffe, setInfoOrderCoffe] = useState<InfoOrderCoffeType | null>(null);
+  const [state, dispatch] = useReducer(coffeeReducer, {
+    infosCoffee: InfosCoffee,
+    quantityCoffe: [] as OrderCoffeType[],
+    infoOrderCoffe: null as InfoOrderCoffeType | null,
+  });
 
   function updatedOrderCoffee(title: string, valueInput: number) {
-    setQuantityCoffe((prevOrders) => {
-      const existingOrder = prevOrders.find((order) => order.type === title);
-
-      if (existingOrder) {
-        return prevOrders.map((order) =>
-          order.type === title ? { ...order, quantity: valueInput } : order
-        );
-      } else {
-        return [...prevOrders, { type: title, quantity: valueInput }];
-      }
-    });
+    dispatch( addOrderAction(title, valueInput) );
   }
 
   function createInfoOrderCoffe(data: InfoOrderCoffeType) {
-    setInfoOrderCoffe(data);
-
-    setQuantityCoffe([]); //Ao submitar irá limpar a order criada.
+    dispatch(setInfoOrderAction(data));
+    dispatch(clearOrderAction()); // Limpa os pedidos após a submissão
   }
 
   function removeOrderCoffee(title: string) {
-    setQuantityCoffe((prevOrders) => prevOrders.filter((order) => order.type !== title));
+    dispatch(removeOrderAction(title));
   }
 
   return (
     <InfoCoffeeContext.Provider
-      value={{ infosCoffee, quantityCoffe, updatedOrderCoffee, removeOrderCoffee, createInfoOrderCoffe, infoOrderCoffe }}
+      value={{
+        infosCoffee: state.infosCoffee,
+        quantityCoffe: state.quantityCoffe,
+        updatedOrderCoffee,
+        removeOrderCoffee,
+        createInfoOrderCoffe,
+        infoOrderCoffe: state.infoOrderCoffe,
+      }}
     >
       {children}
     </InfoCoffeeContext.Provider>
