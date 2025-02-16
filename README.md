@@ -1,53 +1,63 @@
 # ☕ Coffee Delivery 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Sobre o Projeto
+O **Coffee Delivery** ☕️ é uma aplicação web desenvolvida com **React** para facilitar a compra de cafés online. O objetivo do projeto é proporcionar uma experiência intuitiva para que os usuários possam selecionar seus cafés favoritos, adicionar ao carrinho e finalizar o pedido de maneira simples e eficiente.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
+Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** - Biblioteca para criação de interfaces de usuário
+- **Vite** - Ferramenta de build rápida para React
+- **Styled-Components** - Estilização baseada em componentes
+- **useReducer** - Gerenciamento de estado de forma mais estruturada
+- **React Hook Form** - Gerenciamento e validação de formulários
+- **Immer** - Manipulação imutável do estado de maneira mais simples
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 📷 Layout
+O design da aplicação foi inspirado em interfaces modernas e responsivas, garantindo uma experiência fluida tanto no desktop quanto em dispositivos móveis.
 
 ![image](https://github.com/user-attachments/assets/ef169a1e-4102-4f25-9a9b-b80fbbda7da0)
+
+## 🛠️ Instalação e Execução
+Para rodar o projeto localmente, siga os passos abaixo:
+
+### 1️⃣ Clone o repositório
+```bash
+git clone https://github.com/Ianalas/coffee-delivery.git
+```
+
+### 2️⃣ Acesse a pasta do projeto
+```bash
+cd coffee-delivery
+```
+
+### 3️⃣ Instale as dependências
+```bash
+npm install
+# ou
+yarn install
+```
+
+### 4️⃣ Execute o projeto
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+A aplicação estará disponível em: `http://localhost:5173/`
+
+## 📄 Funcionalidades
+- Exibição de uma lista de cafés com imagens e descrições
+- Adição e remoção de itens no carrinho
+- Preenchimento de formulário para entrega
+- Cálculo automático do total do pedido
+- Feedback visual para a finalização do pedido
+
+## 📌 Melhorias Futuras
+- Integração com API para persistência dos pedidos
+- Opção de login e histórico de compras
+
+---
+Feito com ❤️ por [Ian Alas](https://github.com/Ianalas)!
 
